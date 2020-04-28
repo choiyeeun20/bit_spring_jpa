@@ -42,8 +42,8 @@ html, body {
                        type="button" value="검색"> <br>
             </td>
             <td>
-                <a id="login_a" style="cursor:pointer;text-decoration: underline">회원가입</a>
-                <a id="join_a" style="cursor:pointer;text-decoration: underline">로그인</a>
+                <a id="join_a" style="cursor:pointer;text-decoration: underline">회원가입</a>
+                <a id="login_a" style="cursor:pointer;text-decoration: underline">로그인</a>
                 <a id="register_a" style="cursor:pointer;text-decoration: underline">관리자 등록</a>
                 <a id="access_a" style="cursor:pointer;text-decoration: underline">관리자 접속</a>
                 
@@ -97,15 +97,15 @@ html, body {
   	   $('#tr_1').css({ width: '80%', height: '50px' }).addClass('border_black center')
   	   $('#menu').css({ width: '80%', height: '50px' }).addClass('border_black center')
  	   $('#kcdc td').addClass('border_black', 'width_full')
+	   $('#register_t').css({width : '50%', height : '600px'}).addClass('border_black center')
+	   $('#register_t tr').addClass('border_black')
+	   $('#register_t tr td').addClass('border_black')
+	   $('#text_index').css({width: '20%'})
+	   $('#text_input').css({width: '40%'}).addClass('border_black')
  	   $('#register_a').click(e=>{
          e.preventDefault()
          location.href = "admin/register.html"
   	   	})
-		$('#register_t').css({width : '50%', height : '600px'}).addClass('border_black center')
-		$('#register_t tr').addClass('border_black')
-		$('#register_t tr td').addClass('border_black')
-		$('#text_index').css({width: '20%'})
-		$('#text_input').css({width: '40%'}).addClass('border_black')
 	</script>
 </body>
 </html>
