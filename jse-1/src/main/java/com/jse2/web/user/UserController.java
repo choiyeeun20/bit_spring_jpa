@@ -24,7 +24,7 @@ public class UserController {
 	
 	@PostMapping("/join")
 	public Messenger join(@RequestBody User user) {
-		userService.writeUser(user);
+		userService.add(user);
 		return Messenger.SUCCESS;
 	}
 	
@@ -63,7 +63,7 @@ public class UserController {
 	
 	@GetMapping("/list")
 	public List<User> list(){
-		return userService.readUser();
+		return userService.list();
 	}
 	
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	min-height: 100%;
+}
+
+.border_black {
+	border: 1px solid black;
+}
+
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.width_full {
+	width: '100%';
+	height: '100%'
+}
+</style>
+</head>
+<body>
+	<h2>관리자등록</h2>
+
+	<table id="register_t">
+		<tr>
+			<td rowspan="6"></td>
+			<td id="text_index"><a>name</a></td>
+			<td id="text_input"><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>employNumber</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>password</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>position</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>email</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>phoneNumber</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+		<td colspan="3">
+		<input id="register_b" type="button" value="register" style="width:300px;height:50px;left:auto;margein-left:auto">
+		<input id="cancel_b" type="button" value="cancel" style="width:300px;height:50px;left:auto;margein-left:auto"></td>
+		</tr>
+	</table>
+	
+	
+
+	<script type="text/javascript">
+		$('#register_t').css({width : '50%', height : '600px'}).addClass('border_black center')
+		$('#register_t tr').addClass('border_black')
+		$('#register_t tr td').addClass('border_black')
+		$('#text_index').css({width: '20%'})
+		$('#text_input').css({width: '40%'}).addClass('border_black')
+	</script>
+</body>
+</html>

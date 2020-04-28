@@ -11,6 +11,4 @@ public interface UserService {
 	public User login(User user);
 	public boolean update(User user);
 	public boolean delete(String userid);
-	public void writeUser(User user);
-	public List<User> readUser();
 }
