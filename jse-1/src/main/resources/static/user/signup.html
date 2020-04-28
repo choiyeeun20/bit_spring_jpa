@@ -5,98 +5,73 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	min-height: 100%;
+}
+
+.border_black {
+	border: 1px solid black;
+}
+
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.width_full {
+	width: '100%';
+	height: '100%'
+}
+</style>
 </head>
 <body>
-	<h2>HOMEPAGE</h2>
+	<h2>회원가입</h2>
 
-	<header>
-		<p>
-			<b>Take a Look</b>
-		</p>
-	</header>
+	<table id="register_t">
+		<tr>
+			<td rowspan="6"></td>
+			<td id="text_index"><a>name</a></td>
+			<td id="text_input"><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>userid</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>password</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>ssn</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>address</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+			<td><a>email</a></td>
+			<td><input type="text" style="width:250px;height:40px"></td>
+		</tr>
+		<tr>
+		<td colspan="3">
+		<input id="register_b" type="button" value="register" style="width:300px;height:50px;left:auto;margein-left:auto">
+		<input id="cancel_b" type="button" value="cancel" style="width:300px;height:50px;left:auto;margein-left:auto"></td>
+		</tr>
+	</table>
+	
+	
 
-	<section>
-		<nav>
-			<ul>
-				<li><a id="home_a">Home</a></li>
-			</ul>
-		</nav>
-
-		<article>
-			<h1>User Sign-up</h1>
-			<form action="#">
-				<label>Name</label> <br> <input id="name" type="text" /> <br>
-				<br> <label>ID</label> <br> <input id="userid" type="text" />
-				<input id="userid_b" type="button" value="중복검사"/><br><br>
-				<label>Password</label> <br> <input id="password" type="text" /><br>
-				<br> <label>SSN</label> <br> <input id="ssn" type="text" /><br>
-				<br> <label>Address</label> <br> <input id="address"
-					type="text" /> <br> <br> <input id="signup_button"
-					type="button" value="Sign-Up" /> <input id="cancel_button"
-					type="button" value="cancel" />
-			</form>
-		</article>
-	</section>
-	<footer>
-		<p>Footer</p>
-	</footer>
-	<script>
-		$('#home_a')
-		.css('cursor','pointer')
-		.click(e => {
-			e.preventDefault()
-			location.href="../login.html"
-		})
-		
-		$('#signup_button')
-		.css('cursor','pointer')
-		.click(e=>{
-			e.preventDefault()
-			$.ajax({
-				url:'/user/join',
-				type: 'post',
-				data: JSON.stringify({
-						name : $('#name').val(),
-						userid : $('#userid').val(),
-						password : $('#password').val(),
-						ssn : $('#ssn').val(),
-						address : $('#address').val()
-				}),
-				dataType: 'json',
-				contentType: 'application/json',
-				success: d=> {
-					if(d==='SUCCESS'){
-						location.href = "signin.html"
-					} else {
-						location.href = "signup.html"
-						alert('회원가입에 실패하였습니다. 다시 시도하세요.')
-					}
-				},
-				error: (req,x,err)=>{
-					alert(req.status + '/n' + req.responseText + '/n' + err)
-				}
-			})
-		})
-		
-		$('#cancel_button')
-		.css('cursor','pointer')
-		.click( e=> {
-			e.preventDefault()
-			alert('취소되었습니다.')
-		})
-		
-		$('#userid_b').css('cursor','pointer')
-		.click(e=>{
-			$.getJSON('/user/searchID/'+$('#userid').val(),d=>{
-				if(d==='SUCCESS'){
-					alert(d)
-				} else {
-					alert('중복된 아이디입니다.')
-					location.href = "signup.html"
-				}
-			})
-		})
-		
+	<script type="text/javascript">
+		$('#register_t').css({width : '50%', height : '600px'}).addClass('border_black center')
+		$('#register_t tr').addClass('border_black')
+		$('#register_t tr td').addClass('border_black')
+		$('#text_index').css({width: '20%'})
+		$('#text_input').css({width: '40%'}).addClass('border_black')
 	</script>
 </body>
 </html>

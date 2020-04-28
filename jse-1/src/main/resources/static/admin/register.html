@@ -29,11 +29,35 @@ html, body {
 </style>
 </head>
 <body>
-	<h2>관리자등록</h2>
 
-	<table id="register_t">
+	 <table id="kcdc">
+        <tr id="tr_1">
+            <td>
+                <img src="http://www.cdc.go.kr/cdc/img/main/h1_logo.png">
+            </td>
+            <td colspan="2">
+                <input id="search" style="width:500px;height:50px;float:left;margin-left:50px" type="text">
+                <input id="search_button" 
+                       style="width:150px;height:50px;float:left;margin-left:50px;background-color: #80003e; color: white" 
+                       type="button" value="검색"> <br>
+            </td>
+            <td>
+                <a id="login_a" style="cursor:pointer;text-decoration: underline">회원가입</a>
+                <a id="join_a" style="cursor:pointer;text-decoration: underline">로그인</a>
+                <a id="register_a" style="cursor:pointer;text-decoration: underline">관리자 등록</a>
+                <a id="access_a" style="cursor:pointer;text-decoration: underline">관리자 접속</a>
+                
+            </td>
+        </tr>
+        <tr id="menu">
+            <td colspan="4">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <table id="register_t">
 		<tr>
-			<td rowspan="6"></td>
+			<td rowspan="6"><img alt="" src="https://www.vwa.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbThzIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5d0a741ce5304b3bae6201e2bf0839025ea82bdc/user-profile-default.png"></td>
 			<td id="text_index"><a>name</a></td>
 			<td id="text_input"><input type="text" style="width:250px;height:40px"></td>
 		</tr>
@@ -62,11 +86,21 @@ html, body {
 		<input id="register_b" type="button" value="register" style="width:300px;height:50px;left:auto;margein-left:auto">
 		<input id="cancel_b" type="button" value="cancel" style="width:300px;height:50px;left:auto;margein-left:auto"></td>
 		</tr>
+		
 	</table>
-	
-	
+            </td>
+        </tr>
+    </table>
 
 	<script type="text/javascript">
+	   $('#kcdc').css({ width: '80%', height: '900px' }).addClass('border_black center')
+  	   $('#tr_1').css({ width: '80%', height: '50px' }).addClass('border_black center')
+  	   $('#menu').css({ width: '80%', height: '50px' }).addClass('border_black center')
+ 	   $('#kcdc td').addClass('border_black', 'width_full')
+ 	   $('#register_a').click(e=>{
+         e.preventDefault()
+         location.href = "admin/register.html"
+  	   	})
 		$('#register_t').css({width : '50%', height : '600px'}).addClass('border_black center')
 		$('#register_t tr').addClass('border_black')
 		$('#register_t tr td').addClass('border_black')
