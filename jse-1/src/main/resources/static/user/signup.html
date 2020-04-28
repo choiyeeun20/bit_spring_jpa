@@ -92,7 +92,8 @@ footer {
 			<h1>User Sign-up</h1>
 			<form action="#">
 				<label>Name</label> <br> <input id="name" type="text" /> <br>
-				<br> <label>ID</label> <br> <input id="userid" type="text" /><input id="userid_b" type="button" value="중복검사"/><br><br>
+				<br> <label>ID</label> <br> <input id="userid" type="text" />
+				<input id="userid_b" type="button" value="중복검사"/><br><br>
 				<label>Password</label> <br> <input id="password" type="text" /><br>
 				<br> <label>SSN</label> <br> <input id="ssn" type="text" /><br>
 				<br> <label>Address</label> <br> <input id="address"
@@ -156,7 +157,7 @@ footer {
 				if(d==='SUCCESS'){
 					alert(d)
 				} else {
-					alert('중본된 아이디입니다.')
+					alert('중복된 아이디입니다.')
 					location.href = "signup.html"
 				}
 			})
