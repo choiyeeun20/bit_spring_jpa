@@ -3,33 +3,33 @@ package com.jse2.web.admin;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class AdminServiceImpl implements AdminService {
 
-	private Member[] members;
+	private Admin[] members;
 	private int count;
 
-	public MemberServiceImpl() {
-		members = new Member[5];
+	public AdminServiceImpl() {
+		members = new Admin[5];
 		count = 0;
 	}
 
 	@Override
-	public void add(Member member) {
+	public void add(Admin member) {
 		members[count] = member;
 		count++;
 	}
 
 	@Override
-	public Member[] list() {
+	public Admin[] list() {
 		return members;
 	}
 
 	@Override
-	public Member[] searchByName(String name) {
-		Member[] returnMembers = null;
+	public Admin[] searchByName(String name) {
+		Admin[] returnMembers = null;
 		int num = count(name);
 		if (num != 0) {
-			returnMembers = new Member[num];
+			returnMembers = new Admin[num];
 			int j = 0;
 			for (int i = 0; i < count; i++) {
 				if (name.equals(members[i].getName())) {
@@ -45,8 +45,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member detail(String userid) {
-		Member returnMember = null;
+	public Admin detail(String userid) {
+		Admin returnMember = null;
 		for (int i = 0; i < count; i++) {
 			if (userid.equals(members[i].getUserid())) {
 				returnMember = members[i];
@@ -73,7 +73,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean login(Member member) {
+	public boolean login(Admin member) {
 		boolean result = false;
 		for (int i = 0; i < count; i++) {
 			if (member.getUserid().equals(members[i].getUserid())
@@ -86,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void update(Member member) {
+	public void update(Admin member) {
 		for (int i = 0; i < count; i++) {
 			if (member.getUserid().equals(members[i].getUserid())) {
 				members[i].setPassword(member.getPassword());
@@ -96,7 +96,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void delete(Member member) {
+	public void delete(Admin member) {
 		for (int i = 0; i < count; i++) {
 			if (member.getUserid().equals(members[i].getUserid())
 					&& member.getPassword().equals(members[i].getPassword())) {

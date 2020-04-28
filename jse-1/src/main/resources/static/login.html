@@ -112,7 +112,7 @@ footer {
 			.css('cursor','pointer')
 			.click(e=>{
 			e.preventDefault()
-			location.href = "member/join.html"
+			location.href = "admin/join.html"
 		})
 		$('#login_a')
 			.css('cursor','pointer')
@@ -148,7 +148,7 @@ footer {
 					contentType :'application/json',
 					success : d => {
 						if(d==='SUCCESS'){
-							location.href = "member/list.html" 
+							location.href = "admin/list.html" 
 						} else {
 							location.href = "login.html"
 							alert('로그인에 실패하였습니다. 다시 입력해주세요.')

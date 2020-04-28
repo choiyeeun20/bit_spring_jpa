@@ -1,5 +1,10 @@
 package com.jse2.web.user;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -76,6 +81,57 @@ public class UserServiceImpl implements UserService {
 	public boolean delete(String userid) {
 		map.remove(userid);
 		return true;
+	}
+
+	@Override
+	public boolean searchID(String userid) {
+		List<User> list = readUser();
+		for(int i = 0; i < list.size(); i++) {
+			map.put(list.get(i).getUserid(), list.get(i));
+		}
+		return !map.containsKey(userid);
+	}
+
+	@Override
+	public void writeUser(User user) {
+		try {
+			File file = new File(FILE_PATH+"list.txt");
+			@SuppressWarnings("resource")
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
+			bufferedWriter.write(user.toString());
+			bufferedWriter.newLine();
+			bufferedWriter.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<User> readUser() {
+		List<User> list = new ArrayList<>();
+		List<String> userList = new ArrayList<>();
+		try {
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_PATH+"list.txt"));
+			String message = "";
+			while((message = bufferedReader.readLine())!=null) {
+				userList.add(message);
+			}
+			bufferedReader.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		User user = null;
+		for(int i = 0; i < userList.size() ; i++) {
+			user = new User();
+			String[] arr = userList.get(i).split(",");
+			user.setName(arr[0]);
+			user.setUserid(arr[1]);
+			user.setPassword(arr[2]);
+			user.setAddress(arr[3]);
+			user.setSsn(arr[4]);
+			list.add(user);
+		}
+		return list;
 	}
 }
 
