@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+	background-color: #8FBC94;
+	padding: 30px;
+	text-align: center;
+	font-size: 25px;
+	color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+	float: left;
+	width: 30%;
+	height: 430px; /* only for demonstration, should be removed */
+	background: #ffffff;
+	padding: 20px;
+	color: black;
+}
+
+/* Style the list inside the menu */
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+article {
+	float: left;
+	padding: 20px;
+	width: 70%;
+	background-color: #4C4C4C;
+	height: 430px; /* only for demonstration, should be removed */
+	color: white;
+}
+
+/* Clear floats after the columns */
+section:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Style the footer */
+footer {
+	background-color: #ffffff;
+	padding: 10px;
+	text-align: center;
+	color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media ( max-width : 600px) {
+	nav, article {
+		width: 100%;
+		height: auto;
+	}
+}
+</style>
+</head>
+<body>
+	<h2>HOMEPAGE</h2>
+
+	<header>
+		<p>
+			<b>Take a Look</b>
+		</p>
+	</header>
+
+	<section>
+		<nav>
+			<ul>
+				<li><a id = "join_a">Join</a></li>
+				<li><a id = "login_a">Login</a></li>
+			</ul>
+		</nav>
+
+		<article>
+			<h1>Join</h1>
+			<form action="#">
+				<label>Name</label> <br> 
+				<input id="name" type="text" /> <br> <br> 
+				<label>ID</label> <br> 
+				<input id="userid" type="text" /> <br> <br> 
+				<label>Password</label> <br> 
+				<input id="password" type="text" /><br> <br> 
+				<label>SSN</label> <br> 
+				<input id="ssn" type="text" /><br> <br> 
+				<label>Address</label> <br> 
+				<input id="address"	type="text" /> <br> <br> 
+				<input id="join_button" type="button" value="join" /> 
+				<input id="cancel_button" type="button" value="cancel" />
+			</form>
+		</article>
+	</section>
+	<footer>
+		<p>Footer</p>
+	</footer>
+	<script type="text/javascript">
+	$('#join_a')
+		.css('cursor','pointer')
+		.click( e => {
+		e.preventDefault()
+		location.href = "join.html"
+	})
+	
+	$('#login_a')
+		.css('cursor','pointer')
+		.click( e => {
+		e.preventDefault()
+		location.href = "../login.html"
+	})
+	
+	$('#join_button')
+	.css('cursor','pointer')
+	.click(e => {
+		e.preventDefault()
+		$.ajax({
+			url : '/member/join',
+			type : 'post',
+			data : JSON.stringify({
+				name : $('#name').val(),
+				userid : $('#userid').val(),
+				password : $('#password').val(),
+				ssn : $('#ssn').val(),
+				address : $('#address').val()
+			}),
+			dataType : 'json',
+			contentType : 'application/json',
+			success : d => {
+					if(d === 'SUCCESS'){
+						location.href = "../login.html"						
+					} else {
+						alert('실패하였습니다.')
+					}
+				},
+				error : (request,status,error) => {
+					   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+				}
+			})
+
+		})
+		
+		$('#cancel_button')
+		.css('cursor','pointer')
+		.click(e=>{
+			e.preventDefault()
+			alert('취소되었습니다.')
+		})
+	</script>
+</body>
+</html>

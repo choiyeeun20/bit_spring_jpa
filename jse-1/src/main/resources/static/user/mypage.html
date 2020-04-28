@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Page</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>My Page</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 order-md-1">
+          <form class="needs-validation"><br><br>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="name">Name</label>
+ 				<nav aria-label="breadcrumb">
+				  <ol class="breadcrumb"><li id = "name" class="breadcrumb-item active" aria-current="page"></li></ol>
+			    </nav>              
+			    </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="userid">UserID</label>
+ 			  <nav aria-label="breadcrumb">
+				  <ol class="breadcrumb"><li id = "userid" class="breadcrumb-item active" aria-current="page"></li></ol>
+			    </nav>                
+			    <div class="invalid-feedback" style="width: 100%;">
+                  Your userid is required.
+                </div><br>
+            </div>
+            
+            <div class="mb-3">
+              <label for="password">Password</label>
+ 				<nav aria-label="breadcrumb">
+				  <ol class="breadcrumb"><li id = "password" class="breadcrumb-item active" aria-current="page"></li></ol>
+			    </nav>                
+			    <div class="invalid-feedback" style="width: 100%;">
+                  Your password is required.
+                </div><br>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Address</label>
+ 			  <nav aria-label="breadcrumb">
+				<ol class="breadcrumb"><li id = "address" class="breadcrumb-item active" aria-current="page"></li></ol>
+			  </nav>            
+			</div>
+			
+            <div class="mb-3">
+              <label for="ssn">SSN</label>
+ 			  <nav aria-label="breadcrumb">
+				  <ol class="breadcrumb"><li id = "ssn" class="breadcrumb-item active" aria-current="page"></li></ol>
+			    </nav>            
+			</div>
+            <hr class="mb-4">
+            <button id ="edit_button" class="btn btn-primary btn-lg btn-block" type="submit">Edit</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      $.getJSON('/user/detail/'+sessionStorage.getItem('userid'), d=> {
+		$('#name').text(d.name)
+		$('#userid').text(d.userid)
+		$('#password').text(d.password)
+		$('#address').text(d.address)
+		$('#ssn').text(d.ssn)
+      })
+      
+      $('#edit_button').click(e=>{
+    	  e.preventDefault()
+    	  location.href ="update.html"
+      })
+    </script>
+  
+
+</body>
+</html>
