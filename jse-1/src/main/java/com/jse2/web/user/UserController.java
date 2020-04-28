@@ -1,6 +1,7 @@
 package com.jse2.web.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,11 @@ public class UserController {
 	@GetMapping("/searchID/{userid}")
 	public Messenger searchID(@PathVariable String userid) {
 		return (userService.searchID(userid))?Messenger.SUCCESS : Messenger.FAIL;
+	}
+	
+	@GetMapping("/list")
+	public List<User> list(){
+		return userService.readUser();
 	}
 	
 }
