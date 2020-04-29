@@ -9,6 +9,6 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return String.format("%s,%s,%s,%s,%s", name,userid,password,address,ssn);
+		return String.format("%s,%s,%s,%s,%s,%s,%s,%s", name, userid, password, ssn, address, email, profile, registerDate);
 	}
 }

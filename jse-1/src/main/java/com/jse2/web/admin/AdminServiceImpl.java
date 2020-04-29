@@ -10,43 +10,45 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.jse2.web.util.Data;
+import com.jse2.web.util.Messenger;
+
 @Service
 public class AdminServiceImpl implements AdminService {
-
-	public final static String FILE_PATH = "C:\\Users\\bit\\git\\repository2\\jse-1\\src\\main\\resources\\static\\admin\\";
+	
 	
 	@Override
-	public void add(Admin admin) {
+	public void register(Admin admin) {
 		try {
-			File file = new File(FILE_PATH+"adminlist.txt");
+			File file = new File(Data.ADMIN_PATH.toString()+Data.LIST.toString()+Data.CSV.toString());
 			@SuppressWarnings("resource")
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file,true));
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
 			bufferedWriter.write(admin.toString());
 			bufferedWriter.newLine();
 			bufferedWriter.flush();
 		} catch(Exception e) {
-			e.printStackTrace();
+			System.out.println(Messenger.FILE_READ_ERROR);
 		}
 	}
 
 	@Override
-	public List<Admin> list() {
+	public List<Admin> findAll() {
 		List<Admin> list = new ArrayList<>();
 		List<String> stringList = new ArrayList<>();
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_PATH+"adminlist.txt"));
-			String string = "";
-			while((string=bufferedReader.readLine())!=null) {
-				stringList.add(string);
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV));
+			String message = "";
+			while((message=bufferedReader.readLine())!=null) {
+				stringList.add(message);
 			}
 			bufferedReader.close();
 		} catch(Exception e) {
-			e.printStackTrace();
+			System.out.println(Messenger.FILE_READ_ERROR);
 		}
 		Admin admin = null;
-		for(int i =0; i < stringList.size(); i++) {
-			admin = new Admin();
+		for(int i = 0; i < stringList.size(); i++) {
 			String[] strings = stringList.get(i).split(",");
+			admin = new Admin();
 			admin.setName(strings[0]);
 			admin.setEmployNumber(strings[1]);
 			admin.setPassword(strings[2]);
@@ -57,7 +59,27 @@ public class AdminServiceImpl implements AdminService {
 			admin.setRegisterDate(strings[7]);
 			list.add(admin);
 		}
+		return list;
+	}
+
+	@Override
+	public Admin findOne(String employNumber) {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void modify(Admin admin) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Admin admin) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }

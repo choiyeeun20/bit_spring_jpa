@@ -8,93 +8,72 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import org.springframework.stereotype.Service;
+
+import com.jse2.web.util.Data;
+import com.jse2.web.util.Messenger;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
-	public final static String FILE_PATH = "C:\\Users\\bit\\spring_workspace\\jse\\src\\main\\resources\\static\\user\\";
-	
+
 	@Override
-	public void add(User user) {
+	public void signUp(User user) {
 		try {
-			File file = new File(FILE_PATH+"list.txt");
+			File file = new File(Data.USER_PATH.toString()+Data.LIST.toString()+Data.CSV.toString());
 			@SuppressWarnings("resource")
 			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
 			bufferedWriter.write(user.toString());
 			bufferedWriter.newLine();
 			bufferedWriter.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch(Exception e) {
+			System.out.println(Messenger.FILE_READ_ERROR);
 		}
 	}
 
-
 	@Override
-	public List<User> list() {
+	public List<User> fineAll() {
 		List<User> list = new ArrayList<>();
-		List<String> userList = new ArrayList<>();
+		List<String> stringList = new ArrayList<>();
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_PATH+"list.txt"));
-			String message = "";
-			while((message = bufferedReader.readLine())!=null) {
-				userList.add(message);
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(Data.USER_PATH.toString()+Data.LIST.toString()+Data.CSV.toString()));
+			String msg = "";
+			while((msg=bufferedReader.readLine())!=null) {
+				stringList.add(msg);
 			}
 			bufferedReader.close();
-		} catch(Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(Messenger.FILE_READ_ERROR);
 		}
 		User user = null;
-		for(int i = 0; i < userList.size() ; i++) {
+		for(int i = 0; i < stringList.size(); i++) {
 			user = new User();
-			String[] arr = userList.get(i).split(",");
-			user.setName(arr[0]);
-			user.setUserid(arr[1]);
-			user.setPassword(arr[2]);
-			user.setAddress(arr[3]);
-			user.setSsn(arr[4]);
+			String[] strings = stringList.get(i).split(",");
+			user.setName(strings[0]);
+			user.setUserid(strings[1]);
+			user.setPassword(strings[2]);
+			user.setSsn(strings[3]);
+			user.setAddress(strings[4]);
+			user.setEmail(strings[5]);
+			user.setProfile(strings[6]);
+			user.setRegisterDate(strings[7]);
 			list.add(user);
 		}
 		return list;
 	}
-	
+
 	@Override
-	public User detail(String userid) {
+	public User findOne(String userid) {
 		return null;
 	}
 
 	@Override
-	public int count() {
-		return 0;
+	public void modify(User user) {
+		
 	}
 
 	@Override
-	public User login(User user) {
-		return null;
-	}
-
-	@Override
-	public boolean update(User user) {
-		return true;
-	}
-
-	@Override
-	public boolean delete(String userid) {
-		return true;
-	}
-
-	@Override
-	public boolean searchID(String userid) {
-		List<User> list = list();
-		boolean result = false;
-		for(int i = 0; i < list.size(); i++) {
-			if(userid.equals(list.get(i).getUserid())) {
-				result = true;
-			}
-		}
-		return !result;
+	public void remove(User user) {
+		
 	}
 
 }

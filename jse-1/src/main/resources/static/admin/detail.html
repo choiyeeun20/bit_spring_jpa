@@ -92,26 +92,8 @@ html, body {
 	   $('#text_index').css({width: '20%'})
 	   $('#text_input').css({width: '40%'}).addClass('border_black')
 	   $('#register_a').css({color: 'blue', cursor:'none', 'text-decoration':'none'})
-  	   $('#register_b').click(e=>{
-  		   e.preventDefault()
-  		   $.ajax({
-  			   url:'/admins',
-  			   type:'post',
-  			   data: JSON.stringify({
-  				 name : $('#name').val(),
-  			   	 position: $('#position').val(),
-  			   	 email : $('#email').val(),
-  			   	 phoneNumber : $('#phoneNumber').val(),
-  			   }),
-  			   dataType:'json',
-  			   contentType:'application/json',
-  			   success:d=>{
-  				   location.href="admin/access.html"
-  			   },
-  			   error:(req,x,err)=>{
-  				   alert(req.status)
-  			   }
-  		   })
+  	   $.getJSON('/admins/'+'1234', d=>{
+  		   
   	   })
   	   $('#cancel_b').click(e=>{
   		   e.prevenDefault()
