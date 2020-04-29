@@ -35,27 +35,27 @@ html, body {
 		<tr>
 			<td rowspan="6"></td>
 			<td id="text_index"><a>name</a></td>
-			<td id="text_input"><input type="text" style="width:250px;height:40px"></td>
+			<td id="text_input"><input id="name" type="text" style="width:250px;height:40px"></td>
 		</tr>
 		<tr>
 			<td><a>userid</a></td>
-			<td><input type="text" style="width:250px;height:40px"></td>
+			<td><input id="userid" type="text" style="width:250px;height:40px"></td>
 		</tr>
 		<tr>
 			<td><a>password</a></td>
-			<td><input type="text" style="width:250px;height:40px"></td>
+			<td><input id="password" type="text" style="width:250px;height:40px"></td>
 		</tr>
 		<tr>
 			<td><a>ssn</a></td>
-			<td><input type="text" style="width:250px;height:40px"></td>
+			<td><input id="ssn" type="text" style="width:250px;height:40px"></td>
 		</tr>
 		<tr>
 			<td><a>address</a></td>
-			<td><input type="text" style="width:250px;height:40px"></td>
+			<td><input id="address" type="text" style="width:250px;height:40px"></td>
 		</tr>
 		<tr>
 			<td><a>email</a></td>
-			<td><input type="text" style="width:250px;height:40px"></td>
+			<td><input id="email" type="text" style="width:250px;height:40px"></td>
 		</tr>
 		<tr>
 		<td colspan="3">
@@ -72,6 +72,29 @@ html, body {
 		$('#register_t tr td').addClass('border_black')
 		$('#text_index').css({width: '20%'})
 		$('#text_input').css({width: '40%'}).addClass('border_black')
+		$('#register_b').click(e=>{
+			e.prevenDefault()
+			$.ajax({
+				url:'/users',
+				type:'post',
+				data:JSON.stringify({
+					name :$('#name').val(),
+					userid :$('#userid').val(),
+					password :$('#password').val(),
+					ssn :$('#ssn').val(),
+					address :$('#address').val(),
+					email:$('#email').val(),
+				}),
+				dataType:'json',
+				contentType:'application/json',
+				success:d=>{
+					location.href="user/signin.html"
+				},
+				error:(req,x,err)=>{
+					alert(req.status)
+				}
+			})
+		})
 	</script>
 </body>
 </html>
