@@ -22,7 +22,6 @@ public class AdminServiceImpl implements AdminService {
 
 	private String createEmployNumber() {
 		List<Admin> list = findAll();
-		System.out.println(list.size());
 		int EmployNumber = 1000;
 		if(list.size()!=0) {
 			EmployNumber += list.size();
