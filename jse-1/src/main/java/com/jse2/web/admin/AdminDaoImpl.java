@@ -68,11 +68,25 @@ public class AdminDaoImpl implements AdminDao {
 	public Admin selectOne(String employNumber) {
 		Admin admin = null;
 		try {
-			
+			@SuppressWarnings("resource")
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV));
+			String msg = "";
+			while((msg = bufferedReader.readLine())!=null) {
+				String[] strings = msg.split(",");
+				if(strings[1].equals(employNumber)) {
+					admin = new Admin();
+					admin.setName(strings[0]);
+					admin.setEmployNumber(strings[1]);
+					admin.setPassword(strings[2]);
+					admin.setPosition(strings[3]);
+					admin.setEmail(strings[4]);
+					admin.setPhoneNumber(strings[5]);
+					admin.setProfile(strings[6]);
+					admin.setRegisterDate(strings[7]);
+				}
+			}
 		} catch(Exception e) {
-			
-		} finally {
-			
+			System.out.println(Messenger.FILE_SELECT_ERROR);
 		}
 		return admin;
 	}

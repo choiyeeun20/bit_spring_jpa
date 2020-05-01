@@ -48,6 +48,26 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public Admin login(Admin admin) {
+		Admin returnAdmin = null;
+		if(loginChecker(admin)) {
+			returnAdmin = findOne(admin.employNumber);
+		}
+		return returnAdmin;
+	}
+	
+	private boolean loginChecker(Admin admin) {
+		boolean result = false;
+		Admin returnAdmin = findOne(admin.getName());
+		if((returnAdmin)!=null) {
+			if(admin.getPassword().equals(returnAdmin.getPassword())) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	@Override
 	public void modify(Admin admin) {
 		adminDao.update(admin);
 	}
@@ -56,7 +76,6 @@ public class AdminServiceImpl implements AdminService {
 	public void remove(Admin admin) {
 		adminDao.delete(admin);
 	}
-	
-	
+
 
 }

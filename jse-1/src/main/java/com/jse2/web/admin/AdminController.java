@@ -1,6 +1,8 @@
 package com.jse2.web.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +26,19 @@ public class AdminController {
 	public Messenger post(@RequestBody Admin admin) {
 		adminService.register(admin);
 		return Messenger.SUCCESS;
+	}
+	
+	@PostMapping("/{employNumber}")
+	public Map<String,Object> login(@RequestBody Admin admin){
+		Map<String, Object> returnMap = new HashMap<>();
+		Admin returnAdmin = adminService.login(admin);
+		if(returnAdmin!=null) {
+			returnMap.put("admin", returnAdmin);
+			returnMap.put("messenger", Messenger.SUCCESS);
+		} else {
+			returnMap.put("messenger", Messenger.FAIL);
+		}
+		return returnMap;
 	}
 	
 	@GetMapping("")
