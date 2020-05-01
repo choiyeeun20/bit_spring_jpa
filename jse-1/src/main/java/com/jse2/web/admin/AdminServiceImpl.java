@@ -21,12 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	private String createEmployNumber() {
-		List<Admin> list = findAll();
-		int EmployNumber = 1000;
-		if(list.size()!=0) {
-			EmployNumber += list.size();
-		}
-		return Integer.toString(EmployNumber);
+		return Integer.toString((findAll().size()!=0) ? 1000+findAll().size() : 1000);
 	}
 	
 	private String createPassword() {
@@ -49,22 +44,14 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Admin login(Admin admin) {
-		Admin returnAdmin = null;
-		if(loginChecker(admin)) {
-			returnAdmin = findOne(admin.employNumber);
-		}
-		return returnAdmin;
+		return (loginChecker(admin)) ? findOne(admin.employNumber) : null;
 	}
 	
 	private boolean loginChecker(Admin admin) {
-		boolean result = false;
 		Admin returnAdmin = findOne(admin.getName());
-		if((returnAdmin)!=null) {
-			if(admin.getPassword().equals(returnAdmin.getPassword())) {
-				result = true;
-			}
-		}
-		return result;
+		return ((returnAdmin)!=null)? 
+				(admin.getPassword().equals(returnAdmin.getPassword()) ? true : false) 
+				: false;
 	}
 
 	@Override
