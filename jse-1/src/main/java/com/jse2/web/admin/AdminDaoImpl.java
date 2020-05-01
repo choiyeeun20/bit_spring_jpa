@@ -15,7 +15,8 @@ import com.jse2.web.util.Messenger;
 
 @Repository
 public class AdminDaoImpl implements AdminDao {
-
+	
+	
 	@Override
 	public void insert(Admin admin) {
 		try {

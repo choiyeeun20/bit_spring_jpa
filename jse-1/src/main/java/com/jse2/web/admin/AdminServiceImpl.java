@@ -21,7 +21,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	private String createEmployNumber() {
-		return Integer.toString((findAll().size()!=0) ? 1000+findAll().size() : 1000);
+		List<Admin> list = findAll();
+		return Integer.toString((list.size()!=0) ? 1000+list.size() : 1000);
 	}
 	
 	private String createPassword() {

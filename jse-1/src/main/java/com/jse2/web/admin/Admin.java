@@ -1,8 +1,11 @@
 package com.jse2.web.admin;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Getter;
 import lombok.Setter;
 
+@Component
 @Setter @Getter
 public class Admin {
 	String name, employNumber, password, position, email, phoneNumber, profile, registerDate;

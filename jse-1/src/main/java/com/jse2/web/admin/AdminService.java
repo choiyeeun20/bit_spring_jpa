@@ -2,6 +2,9 @@ package com.jse2.web.admin;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public interface AdminService {
 	public void register(Admin admin);
 	public List<Admin> findAll();
