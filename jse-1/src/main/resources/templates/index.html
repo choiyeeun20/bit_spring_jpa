@@ -1,10 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        min-height: 100%;
+    }
+    .border_black {
+        border: 1px solid black;
+    }
+    .center {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .width_full {
+        width: '100%';
+        height: '100%'
+    }
+</style>
+ 
 <body>
-	<h1>Hello Thymeleaf !!</h1>
+    <table id="kcdc">
+        <tr id="tr_1">
+            <td>
+                <img src="http://www.cdc.go.kr/cdc/img/main/h1_logo.png">
+            </td>
+            <td colspan="2">
+                <input id="search" style="width:500px;height:50px;float:left;margin-left:50px" type="text">
+                <input id="search_button" 
+                       style="width:150px;height:50px;float:left;margin-left:50px;background-color: #80003e; color: white" 
+                       type="button" value="검색"> <br>
+            </td>
+            <td>
+                <a id="join_a" style="cursor:pointer;text-decoration: underline">회원가입</a>
+                <a id="login_a" style="cursor:pointer;text-decoration: underline">로그인</a>
+                <a id="register_a" style="cursor:pointer;text-decoration: underline">관리자 등록</a>
+                <a id="access_a" style="cursor:pointer;text-decoration: underline">관리자 접속</a>
+                
+            </td>
+        </tr>
+        <tr id="menu">
+            <td colspan="4">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <img src="http://www.cdc.go.kr/cdc/img/main/visual_default_main_01.jpg">
+            </td>
+        </tr>
+        <tr id="menu_2">
+            <td>
+                <img src="http://www.cdc.go.kr/cdc/img/main/visual_default_05.jpg">
+                <h3>미세먼지 건강 수칙</h3>
+            </td>
+            <td>
+                <img src="http://www.cdc.go.kr/cdc/img/main/visual_default_12.png">
+                <h3>법정 감염병 분류 체계 개편</h3>
+            </td>
+            <td>
+                <img src="http://www.cdc.go.kr/cdc/img/main/visual_default_10.jpg">
+                <h3>인플루엔자</h3>
+            </td>
+            <td>
+                <img src="http://www.cdc.go.kr/cdc/img/main/visual_default_08.jpg">
+                <h3>액상형 전자담배관련 폐손상</h3>
+            </td>
+        </tr>
+    </table>
+ <script>
+     $('#kcdc').css({ width: '80%', height: '900px' }).addClass('border_black center')
+     $('#tr_1').css({ width: '80%', height: '50px' }).addClass('border_black center')
+     $('#menu').css({ width: '80%', height: '50px' }).addClass('border_black center')
+     $('#kcdc td').addClass('border_black', 'width_full')
+     $('#register_a').click(e=>{
+         e.preventDefault()
+         location.href = "admin/register.html"
+     })
+     
+
+ </script>
 </body>
+ 
 </html>
