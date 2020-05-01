@@ -45,7 +45,7 @@ public class AdminDaoImpl implements AdminDao {
 			}
 			bufferedReader.close();
 		} catch(Exception e) {
-			System.out.println(Messenger.FILE_SELECT_ERROR+"1");
+			System.out.println(Messenger.FILE_SELECT_ERROR);
 		} finally {
 			Admin admin = null;
 			for(int i =0; i < stringList.size(); i++) {
