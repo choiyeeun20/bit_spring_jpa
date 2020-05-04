@@ -8,7 +8,7 @@ public interface UserDao {
 
 	public List<User> selectAll();
 
-	public User selectOne(String userid);
+	public User selectOne(String name);
 
 	public void update(User user);
 

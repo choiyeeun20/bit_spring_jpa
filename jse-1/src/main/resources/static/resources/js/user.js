@@ -63,7 +63,7 @@ user = (()=>{
 		    	 .click(e=>{
 		    		 e.preventDefault()
 		    		 $.ajax({
-		    			 url:'/admins/'+$('employNumber').val(),
+		    			 url:'/admins/'+$('#employNumber').val(),
 		    			 type:'post',
 		    			 data:JSON.stringify({
 		    				 employNumber:$('#employNumber').val(),

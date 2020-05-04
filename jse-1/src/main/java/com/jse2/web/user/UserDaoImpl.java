@@ -62,9 +62,31 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public User selectOne(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+	public User selectOne(String name) {
+		User user = null;
+		try {
+			@SuppressWarnings("resource")
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(Data.DATA_PATH.toString()+Data.USER_LIST+Data.CSV));
+			String msg = "";
+			while((msg = bufferedReader.readLine())!=null) {
+				String[] strings = msg.split(",");
+				if(strings[0].equals(name)) {
+					user = new User();
+					user.setName(strings[0]);
+					user.setUserid(strings[1]);
+					user.setPassword(strings[2]);
+					user.setSsn(strings[3]);
+					user.setAddress(strings[4]);
+					user.setEmail(strings[5]);
+					user.setPhoneNubmer(strings[6]);
+					user.setProfile(strings[7]);
+					user.setRegisterDate(strings[8]);
+				}
+			}
+		} catch(Exception e) {
+			System.out.println(Messenger.FILE_SELECT_ERROR);
+		}
+		return user;
 	}
 
 	@Override

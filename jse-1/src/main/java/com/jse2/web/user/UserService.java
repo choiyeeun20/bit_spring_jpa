@@ -8,7 +8,7 @@ public interface UserService {
 
 	public List<User> fineAll();
 
-	public User findOne(String userid);
+	public User findOne(String name);
 
 	public void modify(User user);
 
