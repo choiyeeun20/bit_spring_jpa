@@ -3,13 +3,13 @@ package com.jse2.web.util;
 import java.io.File;
 
 public enum Data {
-	USER_PATH, ADMIN_PATH ,CSV, LIST;
+	DATA_PATH,CSV, ADMIN_LIST, USER_LIST;
 	
 	@Override
 	public String toString() {
 		String returnValue = "";
 		switch(this) {
-		case USER_PATH:
+		case DATA_PATH:
 			returnValue = "C:"+File.separator+"Users" +
 					File.separator + "bit" + 
 					File.separator + "git" + 
@@ -19,30 +19,21 @@ public enum Data {
 					File.separator + "main" + 
 					File.separator + "resources" + 
 					File.separator + "static" + 
-					File.separator + "user" + 
-					File.separator;
-			break;
-			
-		case ADMIN_PATH:
-			returnValue = "C:"+File.separator+"Users" +
-					File.separator + "bit" + 
-					File.separator + "git" + 
-					File.separator + "repository2" + 
-					File.separator + "jse-1" + 
-					File.separator + "src" + 
-					File.separator + "main" + 
 					File.separator + "resources" + 
-					File.separator + "static" + 
-					File.separator + "admin" + 
+					File.separator + "file" +
 					File.separator;
 			break;
-			
+
 		case CSV:
 			returnValue = ".csv";
 			break;
 			
-		case LIST:
-			returnValue = "list";
+		case ADMIN_LIST:
+			returnValue = "admin_list";
+			break;
+		
+		case USER_LIST:
+			returnValue = "user_list";
 			break;
 			
 		default:

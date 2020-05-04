@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	private boolean loginChecker(Admin admin) {
-		Admin returnAdmin = findOne(admin.getName());
+		Admin returnAdmin = findOne(admin.getEmployNumber());
 		return ((returnAdmin)!=null)? 
 				(admin.getPassword().equals(returnAdmin.getPassword()) ? true : false) 
 				: false;

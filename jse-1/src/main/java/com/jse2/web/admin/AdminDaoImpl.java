@@ -23,11 +23,10 @@ public class AdminDaoImpl implements AdminDao {
 			@SuppressWarnings("resource")
 			BufferedWriter bufferedWriter = new BufferedWriter(
 											new FileWriter(
-											new File(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV), true));
+											new File(Data.DATA_PATH.toString()+Data.ADMIN_LIST+Data.CSV), true));
 			bufferedWriter.write(admin.toString());
 			bufferedWriter.newLine();
 			bufferedWriter.flush();
-			System.out.println(admin);
 		} catch(Exception e) {
 			System.out.println(Messenger.FILE_INSERT_ERROR);
 		}
@@ -38,7 +37,7 @@ public class AdminDaoImpl implements AdminDao {
 		List<Admin> list = new ArrayList<>();
 		List<String> stringList = new ArrayList<>();
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV));
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(Data.DATA_PATH.toString()+Data.ADMIN_LIST+Data.CSV));
 			String msg = "";
 			while((msg=bufferedReader.readLine())!=null) {
 				stringList.add(msg);
@@ -70,7 +69,7 @@ public class AdminDaoImpl implements AdminDao {
 		Admin admin = null;
 		try {
 			@SuppressWarnings("resource")
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV));
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(Data.DATA_PATH.toString()+Data.ADMIN_LIST+Data.CSV));
 			String msg = "";
 			while((msg = bufferedReader.readLine())!=null) {
 				String[] strings = msg.split(",");
